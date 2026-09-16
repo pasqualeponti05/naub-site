@@ -44,10 +44,7 @@ Web & E-commerce
 Advertising & Performance 
 Influencer & Talent Marketing 
 
-As IS
-Not an Usual Brand 
-To be 
-Logo 
+
 
 As IS
 Molti brand si affidano a contenuti standardizzati che si somigliano tutti. NAUB nasce per fare il contrario: applicare uno sguardo editoriale e un metodo rigoroso a ogni produzione, su misura per chi vuole distinguersi.
