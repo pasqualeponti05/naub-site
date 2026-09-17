@@ -281,18 +281,21 @@ html.js-anim .marquee{animation:marquee-scroll 28s linear infinite;}
 @keyframes marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* ---------- Clienti marquee ---------- */
-#clienti .section-head{margin-bottom:4px;}
+#clienti .section-head{margin-bottom:0;}
 .clients-marquee-wrap{
-  padding-block:0 4px;
+  height:460px;
+  display:flex;
+  align-items:center;
+  padding-block:0;
   overflow:hidden;
 }
 .clients-marquee{display:flex;align-items:center;width:max-content;}
 html.js-anim .clients-marquee{animation:marquee-scroll 38s linear infinite;}
 .clients-marquee-wrap:hover .clients-marquee{animation-play-state:paused;}
 .client-logo{
-  height:380px;
+  height:460px;
   width:auto;
-  margin-inline:2px;
+  margin-inline:-30px;
   flex:none;
   filter:grayscale(1) opacity(0.75);
   transition:filter .3s ease;
@@ -395,7 +398,7 @@ section.alt{background:var(--surface-2);}
   z-index:2;
 }
 .blend-text img{
-  width:clamp(200px,30vw,460px);
+  width:clamp(280px,42vw,680px);
   height:auto;
   display:block;
   filter:invert(1);

@@ -379,6 +379,8 @@
 
       <div class="reveal">
         <form class="form-card" id="contactForm">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+          <input type="hidden" name="formLoadedAt" id="cf-loaded-at">
           <div class="field">
             <label for="cf-name">Nome e brand</label>
             <input id="cf-name" name="name" type="text" placeholder="Es. Mario Rossi — Brand Mario" required>
@@ -392,10 +394,10 @@
             <textarea id="cf-message" name="message" rows="4" placeholder="Raccontaci il progetto che hai in mente..." required></textarea>
           </div>
           <button class="btn btn-primary btn-block" type="submit">Invia richiesta</button>
-          <p class="form-note">Il pulsante apre il tuo client email con i dati già compilati, pronti da inviare a NAUB.</p>
+          <p class="form-note">Ti risponderemo entro 24 ore lavorative all'indirizzo indicato.</p>
           <div class="form-success" id="formSuccess" hidden>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13L9 17L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Client email aperto: controlla la finestra di composizione per inviare il messaggio.</span>
+            <span>Richiesta inviata: ti risponderemo al più presto.</span>
           </div>
         </form>
       </div>

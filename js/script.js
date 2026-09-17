@@ -193,16 +193,43 @@
   overlay.addEventListener('click', function(e){ if (e.target === overlay) closeOverlay(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay(); });
 
-  // Contact form -> mailto
+  // Contact form -> invio reale via contact.php
   var form = document.getElementById('contactForm');
+
+  // Timestamp di caricamento pagina, usato dal server per scartare submit troppo rapide (bot)
+  var loadedAtField = document.getElementById('cf-loaded-at');
+  if (loadedAtField) loadedAtField.value = Date.now();
+
+  var contactErrorMessages = {
+    too_fast: 'Invio troppo rapido, riprova tra qualche secondo.',
+    too_many_requests: 'Hai raggiunto il numero massimo di richieste. Riprova più tardi o scrivici a info@naub.it.'
+  };
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var name = document.getElementById('cf-name').value.trim();
-    var email = document.getElementById('cf-email').value.trim();
-    var message = document.getElementById('cf-message').value.trim();
-    var subject = encodeURIComponent('Richiesta di collaborazione — ' + name);
-    var body = encodeURIComponent(message + '\n\nEmail di risposta: ' + email);
-    window.location.href = 'mailto:info@naub.it?subject=' + subject + '&body=' + body;
-    document.getElementById('formSuccess').hidden = false;
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso...';
+
+    fetch('contact.php', {
+      method: 'POST',
+      body: new FormData(form)
+    })
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data.ok) {
+          form.hidden = true;
+          document.getElementById('formSuccess').hidden = false;
+        } else {
+          throw new Error(data.error || 'send_failed');
+        }
+      })
+      .catch(function(err){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Invia richiesta';
+        var msg = contactErrorMessages[err.message] || 'Invio non riuscito. Riprova o scrivici direttamente a info@naub.it.';
+        alert(msg);
+      });
   });
 })();
