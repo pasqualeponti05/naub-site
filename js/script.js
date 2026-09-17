@@ -130,6 +130,78 @@
     onCollageScroll();
   }
 
+  // Badge "Official partner Shopify": quando la sezione Risultati entra in vista,
+  // la barra si chiude e il contatore sale rapidamente da 0 a 350.000; dopodiché
+  // continua a incrementarsi di 1 al secondo con un effetto di sostituzione dal basso.
+  var orbitBadge = document.getElementById('orbitBadge');
+  var orbitRing = document.getElementById('orbitRing');
+  var liveOrdersCounter = document.getElementById('liveOrdersCounter');
+  var ORDERS_TARGET = 350000;
+
+  function formatOrders(n){ return Math.round(n).toLocaleString('it-IT'); }
+
+  function rollCounterTo(el, newText){
+    el.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1), opacity .35s ease';
+    el.style.transform = 'translateY(-100%)';
+    el.style.opacity = '0';
+    setTimeout(function(){
+      el.style.transition = 'none';
+      el.textContent = newText;
+      el.style.transform = 'translateY(100%)';
+      el.style.opacity = '0';
+      void el.offsetWidth; // forza il reflow, altrimenti il browser unisce i due stati
+      el.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1), opacity .35s ease';
+      el.style.transform = 'translateY(0)';
+      el.style.opacity = '1';
+    }, 350);
+  }
+
+  function startOrdersLoop(){
+    if (!liveOrdersCounter) return;
+    var count = ORDERS_TARGET;
+    setInterval(function(){
+      count += 1;
+      rollCounterTo(liveOrdersCounter, formatOrders(count));
+    }, 1000);
+  }
+
+  function runResultsIntro(){
+    if (orbitRing) orbitRing.classList.add('in');
+    if (!liveOrdersCounter){ return; }
+    if (reduceMotionCheck()){
+      liveOrdersCounter.textContent = formatOrders(ORDERS_TARGET);
+      startOrdersLoop();
+      return;
+    }
+    var duration = 1800;
+    var start = null;
+    function tick(ts){
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      liveOrdersCounter.textContent = formatOrders(eased * ORDERS_TARGET);
+      if (p < 1){
+        requestAnimationFrame(tick);
+      } else {
+        startOrdersLoop();
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (orbitBadge){
+    if ('IntersectionObserver' in window){
+      var resultsIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){ runResultsIntro(); resultsIo.unobserve(entry.target); }
+        });
+      }, {threshold:0.4});
+      resultsIo.observe(orbitBadge);
+    } else {
+      runResultsIntro();
+    }
+  }
+
   // Contact form -> invio reale via contact.php
   var form = document.getElementById('contactForm');
 
