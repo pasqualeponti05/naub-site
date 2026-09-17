@@ -28,9 +28,9 @@
 
   // Reveal on scroll: simple blocks fade up immediately, card grids stagger
   // child-by-child (same technique as the reference demo: index * 90ms via setTimeout).
-  var revealEls = document.querySelectorAll('.reveal, .grid-4, .portfolio-grid, .team-grid');
+  var revealEls = document.querySelectorAll('.reveal, .grid-4, .portfolio-grid, .team-grid, .folder-stack');
   function revealTarget(target){
-    if (target.matches('.grid-4, .portfolio-grid, .team-grid')){
+    if (target.matches('.grid-4, .portfolio-grid, .team-grid, .folder-stack')){
       Array.prototype.forEach.call(target.children, function(child, idx){
         setTimeout(function(){ child.classList.add('in'); }, idx * 90);
       });
@@ -88,8 +88,15 @@
       var offset = (0.5 - progress) * travel;
       if (blendText) blendText.style.transform = 'translateY(' + offset + 'vh)';
     }
-    window.addEventListener('scroll', onPinScroll, {passive:true});
-    window.addEventListener('resize', onPinScroll);
+    var pinTicking = false;
+    function onPinScrollThrottled(){
+      if (!pinTicking){
+        pinTicking = true;
+        requestAnimationFrame(function(){ onPinScroll(); pinTicking = false; });
+      }
+    }
+    window.addEventListener('scroll', onPinScrollThrottled, {passive:true});
+    window.addEventListener('resize', onPinScrollThrottled);
     onPinScroll();
   }
 
@@ -130,11 +137,10 @@
     onCollageScroll();
   }
 
-  // Badge "Official partner Shopify": quando la sezione Risultati entra in vista,
-  // la barra si chiude e il contatore sale rapidamente da 0 a 350.000; dopodiché
-  // continua a incrementarsi di 1 al secondo con un effetto di sostituzione dal basso.
+  // Stat "Ordini generati": quando la sezione Risultati entra in vista, la card
+  // fa fade-up e il contatore sale rapidamente da 0 a 350.000; dopodiché continua
+  // a incrementarsi con un effetto di sostituzione dal basso.
   var orbitBadge = document.getElementById('orbitBadge');
-  var orbitRing = document.getElementById('orbitRing');
   var liveOrdersCounter = document.getElementById('liveOrdersCounter');
   var ORDERS_TARGET = 350000;
 
@@ -159,14 +165,20 @@
   function startOrdersLoop(){
     if (!liveOrdersCounter) return;
     var count = ORDERS_TARGET;
-    setInterval(function(){
-      count += 1;
-      rollCounterTo(liveOrdersCounter, formatOrders(count));
-    }, 1000);
+    function scheduleNext(){
+      var delay = 400 + Math.random() * 2600; // intervallo casuale tra 0.4s e 3s
+      setTimeout(function(){
+        var increment = 1 + Math.floor(Math.random() * 14); // incremento casuale tra 1 e 14
+        count += increment;
+        rollCounterTo(liveOrdersCounter, formatOrders(count));
+        scheduleNext();
+      }, delay);
+    }
+    scheduleNext();
   }
 
   function runResultsIntro(){
-    if (orbitRing) orbitRing.classList.add('in');
+    if (orbitBadge) orbitBadge.classList.add('in');
     if (!liveOrdersCounter){ return; }
     if (reduceMotionCheck()){
       liveOrdersCounter.textContent = formatOrders(ORDERS_TARGET);
@@ -201,6 +213,22 @@
       runResultsIntro();
     }
   }
+
+  // Stack "a faldone": un click porta la foto in primo piano e scurisce le altre, non più l'hover.
+  document.querySelectorAll('.folder-stack').forEach(function(stack){
+    stack.querySelectorAll('.folder-item').forEach(function(item){
+      item.addEventListener('click', function(){
+        var alreadyActive = item.classList.contains('active');
+        stack.querySelectorAll('.folder-item.active').forEach(function(a){ a.classList.remove('active'); });
+        if (alreadyActive){
+          stack.classList.remove('has-active');
+        } else {
+          item.classList.add('active');
+          stack.classList.add('has-active');
+        }
+      });
+    });
+  });
 
   // Contact form -> invio reale via contact.php
   var form = document.getElementById('contactForm');
