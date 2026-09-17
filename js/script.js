@@ -93,105 +93,42 @@
     onPinScroll();
   }
 
-  // Portfolio data + overlay
-  var projects = {
-    streetwear1: {
-      tag: 'Direzione Creativa · Format dimostrativo',
-      title: 'Streetwear Capsule — Look 01',
-      goal: 'Raccontare una capsule streetwear con un\'estetica cinematografica, lontana dai codici del classico still life prodotto.',
-      solution: 'Styling, scelta della scenografia vintage e direzione posa per costruire un\'ambientazione editoriale coerente con l\'identità del brand.',
-      stack: 'Direzione creativa · Fotografia · Styling',
-      img: 'assets/foto/IMG_4180.PNG',
-      alt: 'Streetwear capsule, look editoriale in studio',
-      pos: 'center 15%'
-    },
-    streetwear2: {
-      tag: 'Direzione Creativa · Format dimostrativo',
-      title: 'Streetwear Capsule — Look 02',
-      goal: 'Completare la narrazione visiva della capsule con un secondo look, mantenendo coerenza di scenografia e palette.',
-      solution: 'Stessa produzione, seconda uscita: continuità di luce, colore e composizione per una serie editoriale coesa.',
-      stack: 'Direzione creativa · Fotografia · Post-produzione',
-      img: 'assets/foto/IMG_4182.PNG',
-      alt: 'Streetwear capsule, secondo look editoriale in studio',
-      pos: 'center 20%'
-    },
-    ritratto: {
-      tag: 'Fotografia · Format dimostrativo',
-      title: 'Ritratto Editoriale',
-      goal: 'Costruire un immaginario riconoscibile per un brand emergente, con un linguaggio più vicino all\'editoriale moda che alla campagna prodotto classica.',
-      solution: 'Shooting on-location con luce naturale, ricerca della location e color grading dedicato in post-produzione.',
-      stack: 'Fotografia · Color grading · Location scouting',
-      img: 'assets/foto/IMG_4170.PNG',
-      alt: 'Ritratto editoriale moda su fondale urbano',
-      pos: 'center 15%'
-    },
-    retail: {
-      tag: 'Content · Format dimostrativo',
-      title: 'Apertura Concept Store',
-      goal: 'Documentare l\'apertura di un concept store multibrand valorizzando il visual merchandising in vetrina.',
-      solution: 'Reportage fotografico della facciata e degli allestimenti interni, in coordinamento con i brand ospitati nello spazio.',
-      stack: 'Fotografia · Reportage · Content per social',
-      img: 'assets/foto/IMG_4178.PNG',
-      alt: 'Vetrina di un concept store multibrand',
-      pos: 'center center'
-    },
-    product: {
-      tag: 'Fotografia · Format dimostrativo',
-      title: 'Product Still Life',
-      goal: 'Valorizzare un pezzo iconico per una campagna prodotto destinata a e-commerce e social.',
-      solution: 'Composizione still life in luce naturale, dettaglio in primo piano e post-produzione dedicata a colore e texture.',
-      stack: 'Still life · Fotografia prodotto · Retouching',
-      img: 'assets/foto/IMG_4179.PNG',
-      alt: 'Still life prodotto, sneaker in primo piano',
-      pos: 'center center'
-    },
-    live: {
-      tag: 'Content · Format dimostrativo',
-      title: 'Live & Music Coverage',
-      goal: 'Documentare un live set con un linguaggio fotografico da concerto, tra energia sul palco e atmosfera del backstage.',
-      solution: 'Copertura fotografica dal pit e dal backstage in condizioni di bassa luce, con selezione ed editing rapido per i canali social dell\'artista.',
-      stack: 'Fotografia live · Bassa luce · Editing rapido',
-      img: 'assets/foto/IMG_4167.PNG',
-      alt: 'Copertura fotografica di un live set',
-      pos: 'center 18%'
+  // Collage foto: la pagina scorre normalmente, ma la sezione resta pinnata
+  // mentre le foto si susseguono con uno slide verticale, tipo reel Instagram/TikTok.
+  var collageWrap = document.getElementById('collageWrap');
+  if (collageWrap && !reduceMotionCheck()){
+    var collagePhotos = collageWrap.querySelectorAll('.collage-item');
+    var collageCount = collagePhotos.length;
+    function collageClamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+    function onCollageScroll(){
+      var rect = collageWrap.getBoundingClientRect();
+      var total = rect.height - window.innerHeight;
+      var progress = total > 0 ? collageClamp(-rect.top / total, 0, 1) : 0;
+      var pos = progress * (collageCount - 1);
+      var activeIdx = collageClamp(Math.floor(pos), 0, collageCount - 2 < 0 ? 0 : collageCount - 2);
+      var frac = collageCount > 1 ? collageClamp(pos - activeIdx, 0, 1) : 0;
+
+      collagePhotos.forEach(function(item, i){
+        var y, scale, dim, op;
+        if (i <= activeIdx){
+          // Foto già posizionate: restano ferme e vengono progressivamente coperte da quella sopra.
+          y = 0; scale = 1; op = 1; dim = (i === activeIdx) ? frac * 0.4 : 0;
+        } else if (i === activeIdx + 1){
+          // Foto in ingresso: scivola dal basso, dissolvendo in vista, e va sopra quella attuale.
+          y = (1 - frac) * 100; scale = 1.08 - frac * 0.08; op = frac; dim = 0;
+        } else {
+          y = 100; scale = 1.08; op = 0; dim = 0;
+        }
+        item.style.transform = 'translateY(' + y + '%) scale(' + scale + ')';
+        item.style.opacity = op;
+        item.style.filter = 'brightness(' + (1 - dim) + ')';
+        item.style.zIndex = i;
+      });
     }
-  };
-
-  var overlay = document.getElementById('overlay');
-  var overlayClose = document.getElementById('overlayClose');
-  var lastFocused = null;
-
-  function openProject(key){
-    var p = projects[key];
-    if (!p) return;
-    document.getElementById('overlayTag').textContent = p.tag;
-    document.getElementById('overlayTitle').textContent = p.title;
-    document.getElementById('overlayGoal').textContent = p.goal;
-    document.getElementById('overlaySolution').textContent = p.solution;
-    document.getElementById('overlayStack').textContent = p.stack;
-    var img = document.getElementById('overlayImg');
-    img.src = p.img;
-    img.alt = p.alt;
-    img.style.objectPosition = p.pos || 'center center';
-    lastFocused = document.activeElement;
-    overlay.classList.add('open');
-    overlayClose.focus();
-    document.body.style.overflow = 'hidden';
-    if (history.pushState) { history.pushState(null, '', '#progetto-' + key); }
+    window.addEventListener('scroll', onCollageScroll, {passive:true});
+    window.addEventListener('resize', onCollageScroll);
+    onCollageScroll();
   }
-  function closeOverlay(){
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    if (lastFocused) lastFocused.focus();
-    if (history.pushState) { history.pushState(null, '', '#lavori'); }
-  }
-
-  document.querySelectorAll('.proj-card[data-project]').forEach(function(card){
-    card.addEventListener('click', function(){ openProject(card.getAttribute('data-project')); });
-  });
-  overlayClose.addEventListener('click', closeOverlay);
-  overlay.addEventListener('click', function(e){ if (e.target === overlay) closeOverlay(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay(); });
 
   // Contact form -> invio reale via contact.php
   var form = document.getElementById('contactForm');
