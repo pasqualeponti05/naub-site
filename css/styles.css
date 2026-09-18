@@ -227,8 +227,8 @@ header{
 .hero-sub-group{display:flex;flex-direction:column;gap:8px;}
 .hero-sub{font-size:1.06rem;color:rgba(255,255,255,.82);max-width:52ch;}
 .hero-tagline{line-height:1.6;font-family:var(--heading);font-weight:800;text-transform:uppercase;color:#fff;}
-#manifesto .hero-sub{color:var(--muted);font-size:clamp(1.15rem,1rem + 0.8vw,1.5rem);}
-#manifesto .hero-tagline{color:var(--ink);font-size:clamp(1.4rem,1.1rem + 1.3vw,1.9rem);}
+#manifesto .hero-sub{color:var(--muted);font-size:clamp(0.95rem,0.8rem + 1vw,1.5rem);}
+#manifesto .hero-tagline{color:var(--ink);font-size:clamp(1.15rem,0.9rem + 1.6vw,1.9rem);}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;}
 .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.5);}
 .hero .btn-ghost:hover{border-color:#fff;}
@@ -709,6 +709,9 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
 }
 
 /* ---------- Responsive ---------- */
+@media (min-width:861px){
+  body{font-size:20px;}
+}
 @media (max-width:860px){
   .nav-links,.nav-cta .btn-ghost,.nav-cta .btn-primary{display:none;}
   .nav-toggle{display:flex;}
