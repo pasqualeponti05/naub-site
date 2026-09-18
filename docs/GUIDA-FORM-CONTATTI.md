@@ -2,7 +2,7 @@
 
 ## 1. Situazione attuale
 
-Il form in `#contatti` ([index.html:381](index.html#L381)) oggi funziona così ([js/script.js:196-207](js/script.js#L196-L207)):
+Il form in `#contatti` ([index.html:381](../index.html#L381)) oggi funziona così ([js/script.js:196-207](../js/script.js#L196-L207)):
 
 - alla submit, JS costruisce un link `mailto:info@naub.it?subject=...&body=...`
 - il browser apre il client di posta dell'utente (Outlook, Mail, Gmail desktop app...) con i campi precompilati
@@ -245,7 +245,7 @@ Aggiungi il campo honeypot **e** il campo nascosto per il controllo del tempo mi
 
 `formLoadedAt` viene valorizzato via JS (vedi punto 3.5): è il timestamp di quando la pagina è stata caricata, usato da `contact.php` per scartare submit troppo rapide (bot).
 
-Il resto del form (`name`, `email`, `message`) resta identico: gli `id`/`name` già presenti in [index.html:384-392](index.html#L384-L392) vanno benissimo così come sono.
+Il resto del form (`name`, `email`, `message`) resta identico: gli `id`/`name` già presenti in [index.html:384-392](../index.html#L384-L392) vanno benissimo così come sono.
 
 ### 3.5 Sostituisci la logica in `js/script.js`
 
@@ -292,7 +292,7 @@ form.addEventListener('submit', function(e){
 });
 ```
 
-Aggiorna anche il testo in [index.html:395](index.html#L395) ("Il pulsante apre il tuo client email...") perché non sarà più vero — sostituiscilo con qualcosa tipo "Ti risponderemo entro 24 ore lavorative all'indirizzo indicato."
+Aggiorna anche il testo in [index.html:395](../index.html#L395) ("Il pulsante apre il tuo client email...") perché non sarà più vero — sostituiscilo con qualcosa tipo "Ti risponderemo entro 24 ore lavorative all'indirizzo indicato."
 
 ### 3.6 Pubblicazione su Aruba
 

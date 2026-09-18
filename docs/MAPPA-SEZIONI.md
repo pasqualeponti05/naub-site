@@ -20,7 +20,7 @@ Ordine dall'alto in basso, con l'id/classe da usare per riferirsi a ciascuna zon
 
 ## Note utili
 
-- Le sezioni **Team** è momentaneamente nascosta (`hidden` su `#team` + sui link di navigazione corrispondenti). Per riattivarla basta togliere `hidden` in [index.html](index.html) e dai link nel menu.
-- `#pinWrap` e `#collageWrap` sono le due sezioni "a scorrimento pinnato": restano ferme sullo schermo mentre si scrolla e l'animazione è guidata dalla posizione di scroll (gestita in [js/script.js](js/script.js)).
-- Il file CSS è unico: [css/styles.css](css/styles.css). Le regole specifiche di una sezione sono quasi sempre prefissate con l'id, es. `#risultati .split{...}`, `#manifesto .hero-sub{...}`.
+- Le sezioni **Team** è momentaneamente nascosta (`hidden` su `#team` + sui link di navigazione corrispondenti). Per riattivarla basta togliere `hidden` in [index.html](../index.html) e dai link nel menu.
+- `#pinWrap` e `#collageWrap` sono le due sezioni "a scorrimento pinnato": restano ferme sullo schermo mentre si scrolla e l'animazione è guidata dalla posizione di scroll (gestita in [js/script.js](../js/script.js)).
+- Il file CSS è unico: [css/styles.css](../css/styles.css). Le regole specifiche di una sezione sono quasi sempre prefissate con l'id, es. `#risultati .split{...}`, `#manifesto .hero-sub{...}`.
 - Quando chiedi una modifica, indicare il **numero o il nome** di questa tabella (es. "nella sezione 8, Risultati...") mi permette di editare subito il punto giusto senza dover ricercare.
