@@ -227,8 +227,8 @@ header{
 .hero-sub-group{display:flex;flex-direction:column;gap:8px;}
 .hero-sub{font-size:1.06rem;color:rgba(255,255,255,.82);max-width:52ch;}
 .hero-tagline{line-height:1.6;font-family:var(--heading);font-weight:800;text-transform:uppercase;color:#fff;}
-#manifesto .hero-sub{color:var(--muted);}
-#manifesto .hero-tagline{color:var(--ink);}
+#manifesto .hero-sub{color:var(--muted);font-size:clamp(1.15rem,1rem + 0.8vw,1.5rem);}
+#manifesto .hero-tagline{color:var(--ink);font-size:clamp(1.4rem,1.1rem + 1.3vw,1.9rem);}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;}
 .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.5);}
 .hero .btn-ghost:hover{border-color:#fff;}
@@ -295,12 +295,12 @@ html.js-anim .marquee{animation:marquee-scroll 28s linear infinite;}
   overflow:hidden;
 }
 .clients-marquee{display:flex;align-items:center;width:max-content;}
-html.js-anim .clients-marquee{animation:marquee-scroll 4s linear infinite;}
-.clients-marquee-wrap:hover .clients-marquee{animation-play-state:paused;}
+html.js-anim .clients-marquee{animation:marquee-scroll 30s linear infinite;}
 .client-logo{
-  height:460px;
-  width:auto;
-  margin-inline:-55px;
+  height:580px;
+  width:580px;
+  object-fit:contain;
+  margin-inline:-34px;
   flex:none;
   filter:grayscale(1) opacity(0.75);
   transition:filter .3s ease;
@@ -347,7 +347,7 @@ html.js-anim .card.in{opacity:1;transform:translateY(0);}
 .card p{color:var(--muted);font-size:0.94rem;}
 
 section.alt{background:var(--surface-2);}
-#clienti{background:var(--bg);}
+#clienti{background:var(--bg);padding-bottom:24px;}
 #studio{background:var(--ink);}
 #studio .eyebrow{color:#fff;}
 #studio h2{color:#fff;}
