@@ -475,7 +475,7 @@ html.js-anim .stat-card.in{opacity:1;transform:translateY(0);}
 }
 
 /* ---------- Pinned manifesto stage ---------- */
-.pin-wrap{position:relative;height:170vh;}
+.pin-wrap{position:relative;height:145vh;}
 .pin-stage{
   position:sticky;top:0;height:100vh;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
@@ -495,9 +495,9 @@ html.js-anim .stat-card.in{opacity:1;transform:translateY(0);}
   will-change:transform, opacity;
 }
 .pin-card img{width:100%;height:100%;object-fit:cover;display:block;}
-.pin-card.c1{left:8%;top:24%;width:200px;height:340px;}
-.pin-card.c2{left:50%;top:9%;width:250px;height:430px;margin-left:-125px;z-index:1;}
-.pin-card.c3{right:8%;top:30%;width:200px;height:340px;}
+.pin-card.c1{left:8%;top:24%;width:260px;height:442px;}
+.pin-card.c2{left:50%;top:9%;width:330px;height:560px;margin-left:-165px;z-index:1;}
+.pin-card.c3{right:8%;top:30%;width:260px;height:442px;}
 .blend-text{
   position:absolute;left:0;right:0;top:50%;
   display:flex;flex-direction:column;align-items:center;
@@ -759,12 +759,13 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   /* Schermo piccolo: loghi clienti ridimensionati (erano fissi a 580px anche su mobile). */
   .clients-marquee-wrap{height:240px;}
   .client-logo{height:240px;width:240px;margin-inline:-14px;}
+  html.js-anim .clients-marquee{animation-duration:10s;}
 }
 
 /* Mobile nav sheet */
 .mobile-sheet{
   position:fixed;inset:0;
-  background:var(--bg);
+  background:var(--ink);
   z-index:60;
   padding:20px 24px calc(24px + env(safe-area-inset-bottom,0px));
   display:flex;flex-direction:column;gap:14px;
@@ -774,9 +775,11 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
 }
 .mobile-sheet.open{transform:translateY(0);}
 .mobile-sheet .top{display:flex;justify-content:space-between;align-items:center;}
+.mobile-sheet .brand-logo{filter:invert(1);}
+.mobile-sheet .nav-toggle{border-color:var(--btn-accent);color:var(--btn-accent);}
 .mobile-sheet nav{display:flex;flex-direction:column;gap:22px;margin-top:0;}
 .mobile-sheet nav a{
-  font-family:var(--sans);font-weight:600;font-size:1.3rem;text-decoration:none;color:var(--ink);
+  font-family:var(--sans);font-weight:600;font-size:1.3rem;text-decoration:none;color:var(--btn-accent);
 }
 .mobile-sheet .btn-block{
   width:100%;
