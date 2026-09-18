@@ -9,10 +9,9 @@
 
   function reduceMotionCheck(){ return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
 
-  // Hero background video: only autoplay when motion is welcome, otherwise
-  // it just sits on its poster frame.
+  // Hero background video: deve sempre partire, anche con "riduci movimento" attivo.
   var heroVideo = document.getElementById('heroVideo');
-  if (heroVideo && !reduceMotionCheck()){
+  if (heroVideo){
     heroVideo.play().catch(function(){});
   }
 
