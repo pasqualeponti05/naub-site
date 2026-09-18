@@ -347,7 +347,7 @@ html.js-anim .card.in{opacity:1;transform:translateY(0);}
 .card p{color:var(--muted);font-size:0.94rem;}
 
 section.alt{background:var(--surface-2);}
-#clienti{background:var(--bg);padding-bottom:24px;}
+#clienti{background:var(--bg);padding-bottom:0;}
 #studio{background:var(--ink);}
 #studio .eyebrow{color:#fff;}
 #studio h2{color:#fff;}
@@ -629,8 +629,10 @@ html.js-anim .team-photo-card.in{opacity:1;transform:translateY(0);}
 .form-card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   padding:32px;
+  width:100%;
   max-width:420px;
   margin-inline:auto;
+  box-sizing:border-box;
 }
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
 .field label{
@@ -645,6 +647,9 @@ html.js-anim .team-photo-card.in{opacity:1;transform:translateY(0);}
   background:var(--bg);
   color:var(--ink);
   resize:vertical;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
 }
 .field input:focus,.field textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
 .form-note{font-size:0.78rem;color:var(--muted);margin-top:14px;}
@@ -673,6 +678,7 @@ footer .brand-logo{filter:invert(1);}
 .footer-cols{display:flex;gap:56px;flex-wrap:wrap;}
 .footer-col{display:flex;flex-direction:column;gap:10px;}
 .footer-col .eyebrow{margin-bottom:4px;color:rgba(255,255,255,.55);}
+.footer-col .eyebrow::before{display:none;}
 .footer-col a{font-size:0.9rem;color:rgba(255,255,255,.6);text-decoration:none;}
 .footer-col a:hover{color:#fff;}
 .footer-bottom{
@@ -710,6 +716,8 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   .split{grid-template-columns:1fr;gap:24px;}
   .grid-4{grid-template-columns:repeat(2,1fr);}
   .section{padding-block:64px;}
+  .clients-marquee-wrap{height:320px;}
+  .client-logo{height:320px;width:320px;margin-inline:-19px;}
 }
 @media (max-width:700px){
   .pin-wrap{height:130vh;}
@@ -745,6 +753,9 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   /* Schermo piccolo: i loghi partner uno sotto l'altro invece che in riga. */
   .partner-logos{flex-direction:column;gap:26px;}
   .partner-logo-tile{height:70px;}
+  /* Schermo piccolo: loghi clienti ridimensionati (erano fissi a 580px anche su mobile). */
+  .clients-marquee-wrap{height:240px;}
+  .client-logo{height:240px;width:240px;margin-inline:-14px;}
 }
 
 /* Mobile nav sheet */
