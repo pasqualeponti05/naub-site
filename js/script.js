@@ -78,15 +78,16 @@
       var progress = total > 0 ? clamp((window.innerHeight - rect.top) / (window.innerHeight + total), 0, 1) : 0;
 
       pinCards.forEach(function(card, i){
-        var delay = i * 0.12;
+        var delay = 0.1 + i * 0.12;
         var p = clamp((progress - delay) / 0.35, 0, 1);
         var eased = 1 - Math.pow(1 - p, 3);
         card.style.opacity = eased;
         card.style.transform = 'translateY(' + ((1 - eased) * 70) + 'px)';
       });
 
-      var travel = 120;
-      var offset = (0.5 - progress) * travel;
+      var travel = 220;
+      var logoProgress = clamp((progress - 0.4) / 0.5, 0, 1);
+      var offset = (0.5 - logoProgress) * travel;
       if (blendText) blendText.style.transform = 'translateY(' + offset + 'vh)';
     }
     var pinTicking = false;
