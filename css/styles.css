@@ -454,7 +454,7 @@ html.js-anim .stat-card.in{opacity:1;transform:translateY(0);}
   align-items:center;
   justify-content:center;
   gap:32px;
-  margin-top:64px;
+  margin-top:28px;
   width:100%;
 }
 .partner-logo-tile{
@@ -491,7 +491,6 @@ html.js-anim .stat-card.in{opacity:1;transform:translateY(0);}
   border-radius:var(--radius);
   overflow:hidden;
   background:var(--surface-2);
-  box-shadow:0 30px 70px -24px rgba(22,24,28,.4);
   will-change:transform, opacity;
 }
 .pin-card img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -512,7 +511,7 @@ html.js-anim .stat-card.in{opacity:1;transform:translateY(0);}
   display:block;
   filter:invert(1);
 }
-.pin-cta{position:absolute;bottom:9%;left:0;right:0;text-align:center;z-index:3;}
+.pin-cta{text-align:left;margin-top:32px;}
 
 /* ---------- Collage foto (pinned, slide+dissolvenza guidati dallo scroll naturale della pagina) ---------- */
 .collage-wrap{position:relative;height:490vh;}
@@ -723,11 +722,12 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   .client-logo{height:320px;width:320px;margin-inline:-19px;}
 }
 @media (max-width:700px){
-  .pin-wrap{height:130vh;}
+  .pin-wrap{height:190vh;}
   .pin-card.c1{width:150px;height:242px;left:3%;top:16%;}
   .pin-card.c2{width:190px;height:320px;top:6%;margin-left:-95px;}
   .pin-card.c3{width:150px;height:242px;right:3%;top:20%;}
   .pin-caption{top:8%;}
+  #manifesto{padding-top:8px;}
 }
 @media (max-width:640px){
   .team-grid{grid-template-columns:repeat(2,1fr);}
@@ -738,7 +738,7 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   .team-grid{grid-template-columns:1fr;}
   h2{font-size:clamp(2rem,1.3rem + 4.5vw,2.6rem);}
   .hero-ctas{flex-direction:column;align-items:stretch;}
-  .hero-ctas .btn{width:100%;white-space:normal;}
+  .hero-ctas .btn{width:100%;white-space:nowrap;font-size:0.68rem;padding-inline:16px;}
   /* Stessa animazione a faldone del desktop, solo ridimensionata per lo schermo piccolo. */
   .folder-stack{max-width:300px;height:360px;}
   .folder-item:nth-child(2){top:45px;}
@@ -779,7 +779,7 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
 .mobile-sheet .nav-toggle{border-color:var(--btn-accent);color:var(--btn-accent);}
 .mobile-sheet nav{display:flex;flex-direction:column;gap:22px;margin-top:0;}
 .mobile-sheet nav a{
-  font-family:var(--sans);font-weight:600;font-size:1.3rem;text-decoration:none;color:var(--btn-accent);
+  font-family:var(--sans);font-weight:400;font-size:1.05rem;text-decoration:none;color:var(--btn-accent);
 }
 .mobile-sheet .btn-block{
   width:100%;
