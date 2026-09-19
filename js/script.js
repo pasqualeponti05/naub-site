@@ -73,7 +73,9 @@
     function onPinScroll(){
       var rect = pinWrap.getBoundingClientRect();
       var total = rect.height - window.innerHeight;
-      var progress = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
+      // Il progresso parte già mentre la sezione entra in vista da sotto (non solo
+      // una volta agganciata in cima), cosi le foto compaiono prima.
+      var progress = total > 0 ? clamp((window.innerHeight - rect.top) / (window.innerHeight + total), 0, 1) : 0;
 
       pinCards.forEach(function(card, i){
         var delay = i * 0.12;
