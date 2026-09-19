@@ -85,9 +85,13 @@
         card.style.transform = 'translateY(' + ((1 - eased) * 70) + 'px)';
       });
 
-      var travel = 220;
+      // Il logo entra dal bordo basso e deve uscire del tutto dal bordo alto: su mobile
+      // parte più vicino (sotto lo schermo, non 110vh più giù) e ha meno strada da fare.
+      var isMobile = window.innerWidth <= 700;
+      var startOffset = isMobile ? 55 : 110;
+      var endOffset = isMobile ? -85 : -110;
       var logoProgress = clamp((progress - 0.4) / 0.5, 0, 1);
-      var offset = (0.5 - logoProgress) * travel;
+      var offset = startOffset + (endOffset - startOffset) * logoProgress;
       if (blendText) blendText.style.transform = 'translateY(' + offset + 'vh)';
     }
     var pinTicking = false;

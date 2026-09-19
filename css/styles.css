@@ -723,9 +723,9 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
 }
 @media (max-width:700px){
   .pin-wrap{height:190vh;}
-  .pin-card.c1{width:150px;height:242px;left:3%;top:16%;}
-  .pin-card.c2{width:190px;height:320px;top:6%;margin-left:-95px;}
-  .pin-card.c3{width:150px;height:242px;right:3%;top:20%;}
+  .pin-card.c1{width:150px;height:320px;max-height:50%;left:3%;top:24%;}
+  .pin-card.c2{width:190px;height:400px;max-height:62%;top:14%;margin-left:-95px;}
+  .pin-card.c3{width:150px;height:320px;max-height:50%;right:3%;top:28%;}
   .pin-caption{top:8%;}
   #manifesto{padding-top:0;}
 }
