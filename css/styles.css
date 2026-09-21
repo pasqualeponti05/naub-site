@@ -191,6 +191,8 @@ header{
   align-items:center;justify-content:center;
   cursor:pointer;
   flex:none;
+  color:var(--ink);
+  -webkit-appearance:none;appearance:none;
 }
 .nav-toggle svg{width:18px;height:18px;}
 
@@ -295,13 +297,12 @@ html.js-anim .marquee{animation:marquee-scroll 28s linear infinite;}
   padding-block:0;
   overflow:hidden;
 }
-.clients-marquee{display:flex;align-items:center;width:max-content;will-change:transform;}
+.clients-marquee{display:flex;align-items:center;gap:12px;width:max-content;will-change:transform;}
 html.js-anim .clients-marquee{animation:marquee-scroll 30s linear infinite;}
 .client-logo{
   height:580px;
   width:580px;
   object-fit:contain;
-  margin-inline:-34px;
   flex:none;
   filter:grayscale(1) opacity(0.75);
   transition:filter .3s ease;
@@ -712,7 +713,7 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
      GPU mobili e causa scatti durante lo scroll continuo: su schermi stretti i
      loghi restano sempre a colori (l'hover per rivelarli non esiste comunque su touch). */
   .client-logo{filter:none;}
-  .client-logo{height:320px;width:320px;margin-inline:-19px;}
+  .client-logo{height:320px;width:320px;}
   .collage-item{width:240px;height:320px;}
   html.js-anim .collage-marquee{animation-duration:34s;}
 }
@@ -754,7 +755,7 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   .partner-logo-tile{height:70px;}
   /* Schermo piccolo: loghi clienti ridimensionati (erano fissi a 580px anche su mobile). */
   .clients-marquee-wrap{height:240px;}
-  .client-logo{height:240px;width:240px;margin-inline:-14px;}
+  .client-logo{height:240px;width:240px;}
   html.js-anim .clients-marquee{animation-duration:8s;}
   .collage-item{width:190px;height:260px;}
   html.js-anim .collage-marquee{animation-duration:26s;}
