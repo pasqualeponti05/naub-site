@@ -707,9 +707,7 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   .grid-4{grid-template-columns:repeat(2,1fr);}
   .section{padding-block:64px;}
   .clients-marquee-wrap{height:320px;}
-  /* Loghi più piccoli = meno spazio da percorrere: durata ridotta per mantenere
-     la stessa velocità (px/s) del desktop invece di ereditare i 30s del set grande. */
-  html.js-anim .clients-marquee{animation-duration:17s;}
+  html.js-anim .clients-marquee{animation-duration:11s;}
   /* Il filtro grayscale animato su 20 loghi contemporaneamente è pesante per le
      GPU mobili e causa scatti durante lo scroll continuo: su schermi stretti i
      loghi restano sempre a colori (l'hover per rivelarli non esiste comunque su touch). */
@@ -757,7 +755,7 @@ html.js-anim .reveal.in{opacity:1;transform:none;}
   /* Schermo piccolo: loghi clienti ridimensionati (erano fissi a 580px anche su mobile). */
   .clients-marquee-wrap{height:240px;}
   .client-logo{height:240px;width:240px;margin-inline:-14px;}
-  html.js-anim .clients-marquee{animation-duration:12.5s;}
+  html.js-anim .clients-marquee{animation-duration:8s;}
   .collage-item{width:190px;height:260px;}
   html.js-anim .collage-marquee{animation-duration:26s;}
 }
