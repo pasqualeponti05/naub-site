@@ -53,8 +53,8 @@ $subject = 'Nuova richiesta dal sito — ' . $name;
 $body    = "Nome e brand: {$name}\nEmail: {$email}\n\nMessaggio:\n{$message}\n";
 
 $payload = json_encode([
-    'from'     => 'NAUB Sito <no-reply@naub.it>', // deve appartenere al dominio verificato su Resend
-    'to'       => ['info@naub.it'],
+    'from'     => 'NAUB Sito <no-reply@mail.naub.it>', // deve appartenere al dominio verificato su Resend
+    'to'       => ['amministrazione@naub.it'],
     'reply_to' => $email, // rispondendo dalla tua casella, scrivi direttamente al cliente
     'subject'  => $subject,
     'text'     => $body,
