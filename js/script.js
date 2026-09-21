@@ -106,43 +106,6 @@
     onPinScroll();
   }
 
-  // Collage foto: la pagina scorre normalmente, ma la sezione resta pinnata
-  // mentre le foto si susseguono con uno slide verticale, tipo reel Instagram/TikTok.
-  var collageWrap = document.getElementById('collageWrap');
-  if (collageWrap && !reduceMotionCheck()){
-    var collagePhotos = collageWrap.querySelectorAll('.collage-item');
-    var collageCount = collagePhotos.length;
-    function collageClamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
-    function onCollageScroll(){
-      var rect = collageWrap.getBoundingClientRect();
-      var total = rect.height - window.innerHeight;
-      var progress = total > 0 ? collageClamp(-rect.top / total, 0, 1) : 0;
-      var pos = progress * (collageCount - 1);
-      var activeIdx = collageClamp(Math.floor(pos), 0, collageCount - 2 < 0 ? 0 : collageCount - 2);
-      var frac = collageCount > 1 ? collageClamp(pos - activeIdx, 0, 1) : 0;
-
-      collagePhotos.forEach(function(item, i){
-        var y, scale, dim, op;
-        if (i <= activeIdx){
-          // Foto già posizionate: restano ferme e vengono progressivamente coperte da quella sopra.
-          y = 0; scale = 1; op = 1; dim = (i === activeIdx) ? frac * 0.4 : 0;
-        } else if (i === activeIdx + 1){
-          // Foto in ingresso: scivola dal basso, dissolvendo in vista, e va sopra quella attuale.
-          y = (1 - frac) * 100; scale = 1.08 - frac * 0.08; op = frac; dim = 0;
-        } else {
-          y = 100; scale = 1.08; op = 0; dim = 0;
-        }
-        item.style.transform = 'translateY(' + y + '%) scale(' + scale + ')';
-        item.style.opacity = op;
-        item.style.filter = 'brightness(' + (1 - dim) + ')';
-        item.style.zIndex = i;
-      });
-    }
-    window.addEventListener('scroll', onCollageScroll, {passive:true});
-    window.addEventListener('resize', onCollageScroll);
-    onCollageScroll();
-  }
-
   // Stat "Ordini generati": quando la sezione Risultati entra in vista, la card
   // fa fade-up e il contatore sale rapidamente da 0 a 350.000; dopodiché continua
   // a incrementarsi con un effetto di sostituzione dal basso.
