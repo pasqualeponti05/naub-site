@@ -6,7 +6,7 @@ Ordine dall'alto in basso, con l'id/classe da usare per riferirsi a ciascuna zon
 |---|------|-----------|-----------|
 | — | Header | `header` | Barra fissa in alto: logo, menu, bottoni "Scrivici" / "Parliamo del progetto" |
 | — | Menu mobile | `#mobileSheet` | Pannello a schermo intero che si apre col bottone hamburger su mobile |
-| 1 | Hero | `.hero` (nessun id) | Video di sfondo, titolo "we build what people remember", bottone "Richiedi una proposta creativa" |
+| 1 | Hero | `.hero` (nessun id) | Video di sfondo, titolo "we build what people remember", bottone "Parlaci della tua idea" |
 | 2 | Marquee servizi | `.marquee-wrap` / `#marquee` | Striscia di testo scorrevole con i servizi (Marketing & Communication, Brand Strategy...) |
 | 3 | Animazione pinnata (loghi/foto) | `#pinWrap` | Sezione "a scorrimento": 3 foto che appaiono + logo NAUB in dissolvenza mentre si scende |
 | 4 | Testo manifesto | `#manifesto` | I tre paragrafi ("Naub è una creative agency...", "Uniamo strategia...", "ESTETICA E BUSINESS...") — spostato qui dalla hero |

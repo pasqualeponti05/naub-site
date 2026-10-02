@@ -6,10 +6,15 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFFFF">
 <title>NAUB</title>
-<script>document.documentElement.classList.add('js-anim');</script>
+<script>
+  /* js-anim: lo script è attivo. Se GSAP non arriva dal CDN entro 2.5s si passa alle
+     animazioni CSS di riserva (.no-gsap), così la hero non resta mai invisibile. */
+  (function(d){d.classList.add('js-anim');setTimeout(function(){if(!d.classList.contains('gsap'))d.classList.add('no-gsap');},2500);})(document.documentElement);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Schibsted+Grotesk:wght@400..700&family=Newsreader:ital,opsz,wght@1,6..72,400..500&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.11/dist/lenis.css">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -45,10 +50,10 @@
     </button>
   </div>
   <nav>
-    <a href="#top">Home</a>
-    <a href="#studio">Studio</a>
-    <a href="#team" hidden>Team</a>
-    <a href="#contatti">Contatti</a>
+    <a href="#top"><span>Home</span></a>
+    <a href="#studio"><span>Studio</span></a>
+    <a href="#team" hidden><span>Team</span></a>
+    <a href="#contatti"><span>Contatti</span></a>
   </nav>
   <a class="btn btn-primary btn-block" href="#contatti">Parliamo del progetto</a>
 </div>
@@ -57,14 +62,16 @@
 
   <!-- ============ HERO (full-bleed video background, staggered keyframe entrance) ============ -->
   <section class="hero">
-    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-      <source src="assets/video/SnapInsta.to_AQN821u0dPLusfpoUvR_ekZBNxcv4VV0nWslQ0wE0IdeZ3FR8W7bmDyeiiD5zjU_RpQOsdgRESiE6HxEbvLDfv0o.mp4" type="video/mp4">
-    </video>
+    <div class="hero-media" id="heroMedia">
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="assets/video/SnapInsta.to_AQN821u0dPLusfpoUvR_ekZBNxcv4VV0nWslQ0wE0IdeZ3FR8W7bmDyeiiD5zjU_RpQOsdgRESiE6HxEbvLDfv0o.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-scrim"></div>
     <div class="hero-copy wrap">
-      <h1 class="kf k2">we build what people remember</h1>
+      <h1 class="kf k2" id="heroTitle">we build what people <span class="serif-accent">remember</span></h1>
       <div class="hero-ctas kf k4">
-        <a class="btn btn-primary" href="#contatti">Richiedi una proposta creativa</a>
+        <a class="btn btn-primary" href="#contatti">Parlaci della tua idea</a>
       </div>
     </div>
   </section>
@@ -114,7 +121,6 @@
       <p class="hero-sub">Uniamo strategia, cultura visiva e creatività per costruire identità, contenuti ed esperienze digitali che lasciano il segno.</p>
       <p class="hero-sub hero-tagline">Estetica e business.<br>Creatività e performance.<br>This is Naub.</p>
     </div>
-    <p class="pin-cta"><a class="btn btn-primary" href="#contatti">Parliamo del progetto</a></p>
   </section>
 
   <!-- ============ STUDIO ============ -->
@@ -209,7 +215,6 @@
         <div class="split-copy reveal">
           <h2 class="partner-badge">Official partner Shopify.</h2>
           <div class="stat-card" id="orbitBadge">
-            <span class="stat-idx">01</span>
             <div class="stat-value"><span class="counter-roll"><strong id="liveOrdersCounter">0</strong></span><span class="stat-suf">+</span></div>
             <div class="stat-label">Ordini generati</div>
           </div>
@@ -319,6 +324,7 @@
             <label for="cf-message">Messaggio</label>
             <textarea id="cf-message" name="message" rows="4" placeholder="Raccontaci il progetto che hai in mente..." required></textarea>
           </div>
+          <div class="form-error" id="formError" role="alert" hidden></div>
           <button class="btn btn-primary btn-block" type="submit">Invia richiesta</button>
           <div class="form-success" id="formSuccess" hidden>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13L9 17L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -361,6 +367,12 @@
   </div>
 </footer>
 
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"><span></span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
 <script src="js/script.js"></script>
 
 </body>
