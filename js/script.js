@@ -142,11 +142,14 @@
         card.style.opacity = eased;
         card.style.transform = 'translateY(' + ((1 - eased) * 70) + 'px)';
       });
-      var isMobile = window.innerWidth <= 700;
-      var startOffset = isMobile ? 55 : 110;
-      var endOffset = isMobile ? -85 : -110;
-      var logoProgress = clamp((progress - 0.4) / 0.5, 0, 1);
-      if (blendText) blendText.style.transform = 'translateY(' + (startOffset + (endOffset - startOffset) * logoProgress) + 'vh)';
+      // Stessa traiettoria della versione GSAP: dal bordo basso dello stage a fuori da quello alto.
+      if (blendText){
+        var stageH = pinWrap.querySelector('.pin-stage').offsetHeight;
+        var startY = stageH * .5 + 4;
+        var endY = -(stageH * .5 + blendText.offsetHeight + 4);
+        var logoProgress = clamp((progress - 0.2) / 0.8, 0, 1);
+        blendText.style.transform = 'translateY(' + (startY + (endY - startY) * logoProgress) + 'px)';
+      }
     }
     var ticking = false;
     function throttled(){
@@ -228,9 +231,10 @@
     if (pinWrap){
       var pinCards = pinWrap.querySelectorAll('.pin-card');
       var blendText = document.getElementById('blendText');
+      var pinStage = pinWrap.querySelector('.pin-stage');
       var pinTl = gsap.timeline({
         defaults:{ ease:'none' },
-        scrollTrigger:{ trigger:pinWrap, start:'top bottom', end:'bottom bottom', scrub:0.6, invalidateOnRefresh:true }
+        scrollTrigger:{ trigger:pinWrap, start:'top bottom', end:'bottom bottom', scrub:1, invalidateOnRefresh:true }
       });
       pinCards.forEach(function(card, i){
         var at = 0.1 + i * 0.12;
@@ -240,12 +244,14 @@
         // Dopo l'entrata le tre foto proseguono a velocità diverse: profondità.
         pinTl.to(card, { y: [-40, -90, -60][i] || -50, duration:1 - at - .35 }, at + .35);
       });
+      // Il logo percorre solo la strada necessaria: entra appena sotto il bordo basso dello
+      // stage ed esce del tutto da quello alto. Distribuito su gran parte della timeline,
+      // si muove circa alla velocità dello scroll invece di attraversare lo stage di colpo.
       if (blendText){
         pinTl.fromTo(blendText,
-          { y:function(){ return window.innerHeight * (window.innerWidth <= 700 ? .55 : 1.1); } },
-          { y:function(){ return window.innerHeight * (window.innerWidth <= 700 ? -.85 : -1.1); }, duration:.5 }, .4);
+          { y:function(){ return pinStage.offsetHeight * .5 + 4; } },
+          { y:function(){ return -(pinStage.offsetHeight * .5 + blendText.offsetHeight + 4); }, duration:.8 }, .2);
       }
-      pinTl.to({}, { duration:.1 }, .9);
     }
 
     // --- Manifesto: le parole si "accendono" seguendo lo scroll.
