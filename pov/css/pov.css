@@ -90,7 +90,7 @@ html:not(.gsap) .scene{background:var(--t-bg);color:var(--t-fg);--fg:var(--t-fg)
   pointer-events:none;
 }
 .pov-header > *{pointer-events:auto;}
-.hdr-logo{display:block;width:64px;color:inherit;}
+.hdr-logo{display:block;width:104px;color:inherit;}
 html.gsap .hdr-logo{opacity:0;}
 .hdr-chapter{
   font-size:11px;
@@ -176,23 +176,31 @@ html.gsap .hdr-logo{opacity:0;}
 .valore{
   display:grid;
   grid-template-columns:repeat(12, 1fr);
-  grid-template-rows:auto 1fr;
+  grid-template-rows:1fr 1fr;
   column-gap:24px;
-  row-gap:48px;
+  row-gap:40px;
 }
-.valore .display{grid-column:1 / span 8;font-size:clamp(3.2rem, 1.2rem + 7vw, 7.5rem);max-width:none;}
-.valore-copy{
-  grid-column:6 / span 6;
-  align-self:end;
-  display:grid;gap:28px;
-  max-width:46ch;
-}
+/* Foto grande a sinistra a tutta altezza; a destra titolo e testo, centrati sulla foto. */
 .valore-media{
-  grid-column:1 / span 5;
-  align-self:end;
+  grid-column:1 / span 6;
+  grid-row:1 / span 2;
   aspect-ratio:1320 / 1644;
-  height:min(58vh, 560px);
+  height:min(78vh, 760px);
   width:auto;
+  max-width:100%;
+}
+.valore .display{
+  grid-column:8 / span 5;
+  grid-row:1;
+  align-self:end;
+  font-size:clamp(2.6rem, 1.2rem + 3.6vw, 4.6rem);
+}
+.valore-copy{
+  grid-column:8 / span 5;
+  grid-row:2;
+  align-self:start;
+  display:grid;gap:24px;
+  max-width:44ch;
 }
 
 /* ---------- 03 Cultura ---------- */
@@ -426,11 +434,15 @@ html.gsap .hdr-logo{opacity:0;}
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
-  :root{--header-h:58px;}
+  :root{--header-h:64px;}
   .hdr-chapter{display:none;}
   .pov-header{grid-template-columns:auto 1fr auto;}
-  .hdr-nav{grid-column:3;gap:16px;}
-  .hdr-logo{width:56px;}
+  .hdr-nav{grid-column:3;gap:18px;font-size:16px;}
+  /* Pulsanti dell'header comodi da toccare (almeno 44px) */
+  .hdr-cta{height:44px;padding-inline:18px;}
+  .hdr-back{padding-block:12px;}
+  .hdr-logo{width:80px;}
+  .scene:not(.hero):not(.reel){padding-top:48px;padding-bottom:48px;}
 
   .hero-logo-wrap{width:84vw;translate:0 0;}
 
@@ -441,7 +453,7 @@ html.gsap .hdr-logo{opacity:0;}
   .valore-copy{max-width:none;}
 
   .cultura-media,.gusto-media,.beauty-media{max-width:none;max-height:none;width:100%;}
-  .valore-media{height:auto;width:100%;max-width:420px;}
+  .valore-media{height:auto;width:100%;max-width:460px;}
   .cultura-media{aspect-ratio:4 / 5;}
   .beauty-copy{order:-1;}
 
