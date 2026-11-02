@@ -32,7 +32,7 @@ Sito Naub/
 │   ├── index.html
 │   ├── css/pov.css
 │   ├── js/pov.js
-│   └── assets/              ← logo POV, foto (dalla presentazione + Pexels) e video (Mixkit)
+│   └── assets/              ← foto della presentazione e reel video forniti dal committente
 └── assets/
     ├── foto/                ← 17 foto editoriali (vedi sezione 7)
     ├── video/                ← 5 video (4 .MOV dal telefono + 1 .mp4 da Instagram, vedi sezione 8)
@@ -47,7 +47,7 @@ Il sito è stato **separato in tre file** (HTML/CSS/JS) su richiesta esplicita d
 
 Il nome del file principale è stato scelto deliberatamente `index.html` (in origine era `varco-digital-template.html`) perché è la convenzione per la homepage di un sito statico.
 
-**Pagina POV (`pov/`)**: versione web della presentazione Keynote "POV BY NAUB" (offerta per attività locali). È una cartella autonoma con i propri CSS, JS e asset, così sul server risponde a `naub.it/pov/` senza regole `.htaccess` (Apache serve `index.html` della cartella). Usa lo stesso stack della home (GSAP + ScrollTrigger + SplitText + Lenis da CDN, stesso fail-safe `js-anim` inline nell'head) ma una palette e un font propri, presi dalla presentazione (rosa, crema, nero; Inter Tight al posto di Helvetica). È collegata dalla home con i link "POV" nel menu desktop, nel menu mobile e nel footer (`href="pov/"`); dalla pagina POV si torna alla home con `href="../"`. Le foto `pexels-*` e i video `mixkit-*` sono materiale con licenza libera (Pexels License, Mixkit Free License), con credito nel footer della pagina.
+**Pagina POV (`pov/`)**: versione web della presentazione Keynote "POV BY NAUB" (offerta per attività locali). È una cartella autonoma con i propri CSS, JS e asset, così sul server risponde a `naub.it/pov/` senza regole `.htaccess` (Apache serve `index.html` della cartella). Usa lo stesso stack della home (GSAP + ScrollTrigger + SplitText + Lenis da CDN, stesso fail-safe `js-anim` inline nell'head) ma una palette e un font propri, presi dalla presentazione (rosa, crema, nero; Inter Tight al posto di Helvetica). È collegata dalla home con i link "POV" nel menu desktop, nel menu mobile e nel footer (`href="pov/"`); dalla pagina POV si torna alla home con `href="../"`. Le foto in `pov/assets/foto/` vengono dalla presentazione; i video `reel-*` sono reel verticali forniti dal committente. Tutti e cinque (pasta, Signora Bettola, burger, Napoli, capesante) sono mostrati dentro iPhone disegnati in CSS nella galleria orizzontale `#produzione`. La foto della pizza della presentazione apre la pagina, a sinistra del testo in `#valore`. Tutti i video sono muti e partono quando sono visibili per almeno metà (sul carosello mobile solo quello al centro). Il logo POV è incorporato in `pov/css/pov.css` come PNG base64 (solo canale alfa) e usato come maschera: un file esterno verrebbe bloccato aprendo la pagina da disco (`file://`). Nessun materiale stock: foto e video presi in rete sono stati rimossi su richiesta del committente.
 
 **Nota percorsi**: la cartella di progetto si chiama `Sito Naub` (con spazio). I riferimenti interni nell'HTML sono tutti **relativi** (`assets/foto/IMG_xxxx.PNG`, `assets/video/...`), quindi lo spazio nel nome della cartella padre non causa problemi — i browser risolvono correttamente i percorsi relativi rispetto alla posizione del file HTML stesso.
 

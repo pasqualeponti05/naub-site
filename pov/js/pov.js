@@ -27,15 +27,18 @@
   var chapterEl = document.getElementById('hdrChapter');
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
 
-  // Video della galleria: partono solo quando sono visibili (anche senza GSAP).
-  var videos = document.querySelectorAll('.reel-item video');
+  // Video (galleria, iPhone, metodo): partono quando sono visibili per almeno metà e si
+  // fermano quando escono, anche senza GSAP. Sul carosello mobile gira solo quello al centro.
+  // Sempre muti: è la condizione perché i browser li facciano partire da soli.
+  var videos = document.querySelectorAll('video');
+  videos.forEach(function(v){ v.muted = true; });
   if ('IntersectionObserver' in window){
     var vio = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ e.target.preload = 'auto'; e.target.play().catch(function(){}); }
         else e.target.pause();
       });
-    }, { rootMargin:'0px 200px', threshold:0.15 });
+    }, { threshold:0.5 });
     videos.forEach(function(v){ vio.observe(v); });
   }
 
@@ -167,13 +170,23 @@
   });
 
   /* ---------- Titoli: righe che salgono da una maschera ---------- */
+  // La maschera di ogni riga è alta quanto l'interlinea, che nei titoli è stretta:
+  // senza questo spazio extra sotto, le lettere con la gamba (g, p, q) restano tagliate.
+  function padMasks(lines){
+    lines.forEach(function(line){
+      var mask = line.parentNode;
+      mask.style.paddingBottom = '.18em';
+      mask.style.marginBottom = '-.18em';
+    });
+    return lines;
+  }
   document.querySelectorAll('.split').forEach(function(el){
     var st = { trigger: el, start:'top 85%', once:true };
     if (hasSplit){
       SplitText.create(el, {
         type:'lines', mask:'lines', autoSplit:true,
         onSplit: function(self){
-          return gsap.from(self.lines, { yPercent:110, duration:1.3, stagger:.09, ease:EXPO, scrollTrigger:st });
+          return gsap.from(padMasks(self.lines), { yPercent:130, duration:1.3, stagger:.09, ease:EXPO, scrollTrigger:st });
         }
       });
     } else {
@@ -188,7 +201,7 @@
 
   /* ---------- Immagini: tendina dal basso + leggero parallasse ---------- */
   gsap.utils.toArray('.media-reveal').forEach(function(fig){
-    var img = fig.querySelector('img');
+    var img = fig.querySelector('img, video');
     gsap.fromTo(fig, { clipPath:'inset(100% 0 0 0)' }, { clipPath:'inset(0% 0 0 0)', duration:1.5, ease:'expo.inOut',
       scrollTrigger:{ trigger:fig, start:'top 80%', once:true } });
     gsap.fromTo(img, { scale:1.18, yPercent:-6 }, { scale:1.06, yPercent:6, ease:'none',
@@ -220,10 +233,10 @@
      Il titolo sale riga per riga, la foto si scopre dal basso mentre si assesta,
      poi arriva la didascalia. Parte una volta sola e si completa sempre. */
   var localeLines = hasSplit
-    ? SplitText.create('#localeTitle', { type:'lines', mask:'lines' }).lines
+    ? padMasks(SplitText.create('#localeTitle', { type:'lines', mask:'lines' }).lines)
     : [document.getElementById('localeTitle')];
   gsap.timeline({ scrollTrigger:{ trigger:'#locale', start:'top 60%', once:true }, defaults:{ ease:EXPO } })
-    .from(localeLines, { yPercent:110, duration:1.3, stagger:.1 }, 0)
+    .from(localeLines, { yPercent:130, duration:1.3, stagger:.1 }, 0)
     .fromTo('#localeMedia', { clipPath:'inset(100% 0 0 0)' }, { clipPath:'inset(0% 0 0 0)', duration:1.6, ease:'expo.inOut' }, .25)
     .fromTo('#localeMedia img', { scale:1.3 }, { scale:1, duration:2.2 }, .25)
     .from('#localeCaption', { y:20, opacity:0, duration:1.1 }, 1.2);
