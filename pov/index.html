@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#E8C9CC">
+<title>POV by NAUB</title>
+<meta name="description" content="POV by NAUB: identità e comunicazione per attività locali che vogliono distinguersi. Ristoranti, saloni, negozi del territorio.">
+<meta property="og:title" content="POV by NAUB">
+<meta property="og:description" content="Ogni attività, un punto di vista.">
+<meta property="og:image" content="https://naub.it/pov/assets/foto/il-gusto.jpg">
+<meta property="og:url" content="https://naub.it/pov/">
+<script>
+  /* Stesso fail-safe della home (../index.html): se GSAP non arriva entro 2.5s si resta sulla versione statica. */
+  (function(d){d.classList.add('js-anim');setTimeout(function(){if(!d.classList.contains('gsap'))d.classList.add('no-gsap');},2500);})(document.documentElement);
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..600&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.11/dist/lenis.css">
+<link rel="preload" as="image" href="assets/pov-logo.png">
+<link rel="stylesheet" href="css/pov.css">
+</head>
+<body>
+
+<a class="skip" href="#valore">Salta al contenuto</a>
+
+<header class="pov-header" id="povHeader">
+  <a class="hdr-logo" id="hdrLogo" href="#top" aria-label="POV by NAUB, torna all'inizio">
+    <span class="pov-mark" aria-hidden="true"></span>
+  </a>
+  <span class="hdr-chapter" id="hdrChapter" aria-hidden="true"></span>
+  <nav class="hdr-nav" aria-label="Navigazione">
+    <a class="hdr-back" href="../">naub.it</a>
+    <a class="hdr-cta" href="#parliamone">Parliamone</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ 01 · COPERTINA ============ -->
+  <section class="scene hero" data-theme="pink" data-chapter="" id="hero">
+    <div class="hero-inner">
+      <h1 class="hero-logo-wrap">
+        <span class="sr-only">POV by NAUB</span>
+        <span class="pov-mark hero-logo" id="heroLogo" aria-hidden="true"></span>
+      </h1>
+      <p class="hero-tag" id="heroTag">Ogni attività, un punto di vista</p>
+    </div>
+  </section>
+
+  <!-- ============ 02 · IL NOSTRO PUNTO DI VISTA ============ -->
+  <section class="scene valore" data-theme="cream" data-chapter="Il nostro punto di vista" id="valore">
+    <h2 class="display split">Il tuo valore merita di essere visto</h2>
+    <div class="valore-copy">
+      <p class="lead reveal-up">La qualità del tuo lavoro deve riconoscersi prima ancora di entrare dalla porta.</p>
+      <p class="small reveal-up">Costruiamo identità e comunicazione per attività locali che vogliono distinguersi.</p>
+    </div>
+  </section>
+
+  <!-- ============ 03 · CULTURA VISIVA ============ -->
+  <section class="scene cultura" data-theme="cream" data-chapter="NAUB" id="cultura">
+    <div class="cultura-copy">
+      <h2 class="title split">Una cultura visiva da brand</h2>
+      <p class="reveal-up">NAUB è una creative agency. Lavoriamo tra brand, fashion, cultura e digital.</p>
+      <p class="small reveal-up">Portiamo questa sensibilità nelle attività del territorio, con una direzione creativa costruita sulla loro personalità.</p>
+    </div>
+    <figure class="media media-reveal cultura-media">
+      <img src="assets/foto/cultura-visiva.jpg" alt="Griglia di piatti fotografati da NAUB: dessert, pasta, crudi e dettagli di sala" width="1320" height="1762" loading="lazy">
+    </figure>
+  </section>
+
+  <!-- ============ 04 · BRAND IDENTITY ============ -->
+  <section class="scene identita" data-theme="cream" data-chapter="Brand identity" id="identita">
+    <h2 class="title split">Un’identità che ti somiglia</h2>
+    <dl class="rows">
+      <div class="row"><dt>Posizionamento</dt><dd>Chi sei, a chi parli, perché sceglierti.</dd></div>
+      <div class="row"><dt>Identità visiva</dt><dd>Logo, colori e tipografia con un carattere preciso.</dd></div>
+      <div class="row"><dt>Direzione creativa</dt><dd>Un linguaggio per immagini, parole e contenuti.</dd></div>
+      <div class="row"><dt>Applicazioni</dt><dd>L’identità prende forma nei tuoi punti di contatto.</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ 05 · FOOD ============ -->
+  <section class="scene gusto" data-theme="cream" data-chapter="Food &amp; restaurant" id="gusto">
+    <div class="gusto-copy">
+      <h2 class="title split">Il gusto comincia con gli occhi</h2>
+      <p class="reveal-up">Diamo forma al carattere del locale, dalla prima immagine all’esperienza al tavolo.</p>
+      <ul class="services reveal-up">
+        <li>Identità e menu</li>
+        <li>Fotografia food e video</li>
+        <li>Social, sito e campagne</li>
+      </ul>
+    </div>
+    <figure class="media media-reveal gusto-media">
+      <img src="assets/foto/il-gusto.jpg" alt="Tavolo apparecchiato con tovaglia rossa, calice di vino e dessert" width="1512" height="1512" loading="lazy">
+    </figure>
+  </section>
+
+  <!-- ============ 06 · HAIR & BEAUTY ============ -->
+  <section class="scene beauty" data-theme="cream" data-chapter="Hair &amp; beauty" id="beauty">
+    <figure class="media media-reveal beauty-media">
+      <img src="assets/foto/hair-beauty.jpg" alt="Shooting beauty: modella sorridente con siero e crema" width="1320" height="1320" loading="lazy">
+    </figure>
+    <div class="beauty-copy">
+      <h2 class="title split">Uno stile riconoscibile</h2>
+      <p class="reveal-up">La cura che metti nel tuo lavoro diventa il linguaggio del salone.</p>
+      <ul class="services reveal-up">
+        <li>Identità</li>
+        <li>Shooting hair e beauty</li>
+        <li>Contenuti e prenotazioni online</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 07 · PRODUZIONE (galleria orizzontale) ============ -->
+  <section class="scene reel" data-theme="ink" data-chapter="Produzione" id="produzione">
+    <div class="reel-track" id="reelTrack">
+      <div class="reel-panel reel-intro">
+        <h2 class="title accent split">Immagini con carattere</h2>
+        <p class="reveal-up">Ogni produzione parte da una direzione: cosa raccontare, come mostrarlo e dove farlo vivere.</p>
+        <ul class="services reveal-up">
+          <li>Concept e art direction</li>
+          <li>Produzione fotografica e video</li>
+          <li>Formati per social, sito e campagne</li>
+        </ul>
+      </div>
+      <div class="reel-scroller">
+      <figure class="reel-item tall"><img src="assets/foto/immagini-carattere.jpg" alt="Mani che prendono fette di pizza da una teglia condivisa" width="1320" height="1644" loading="lazy"></figure>
+      <figure class="reel-item wide"><video src="assets/video/mixkit-13261.mp4" poster="assets/video/mixkit-13261.jpg" muted loop playsinline preload="none" aria-label="Chef che impiatta in una cucina professionale"></video></figure>
+      <figure class="reel-item tall"><img src="assets/foto/pexels-2403391.jpg" alt="Chef che rifinisce un piatto con la salsa in una cucina in penombra" width="1400" height="2100" loading="lazy"></figure>
+      <figure class="reel-item wide"><video src="assets/video/mixkit-47555.mp4" poster="assets/video/mixkit-47555.jpg" muted loop playsinline preload="none" aria-label="Verdure saltate in padella sulla fiamma"></video></figure>
+      <figure class="reel-item tall"><img src="assets/foto/pexels-3338497.jpg" alt="Una mano che sala un piatto di fagiolini su fondo scuro" width="1400" height="2097" loading="lazy"></figure>
+      <figure class="reel-item wide"><video src="assets/video/mixkit-42467.mp4" poster="assets/video/mixkit-42467.jpg" muted loop playsinline preload="none" aria-label="Mani che lavorano l'impasto nella farina"></video></figure>
+      <figure class="reel-item wide"><img src="assets/foto/pexels-5779787.jpg" alt="Fiammata sulla griglia di una cucina professionale" width="1400" height="933" loading="lazy"></figure>
+      <figure class="reel-item wide"><video src="assets/video/mixkit-39535.mp4" poster="assets/video/mixkit-39535.jpg" muted loop playsinline preload="none" aria-label="Chef al lavoro tra il vapore dei fornelli"></video></figure>
+      <figure class="reel-item tall"><img src="assets/foto/pexels-4253312.jpg" alt="Due chef che impiattano con precisione" width="1400" height="2100" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 · DIGITAL & ADVERTISING ============ -->
+  <section class="scene digital" data-theme="cream" data-chapter="Digital &amp; advertising" id="digital">
+    <h2 class="display split">Un’immagine forte. Un percorso chiaro per sceglierti.</h2>
+    <div class="pillars">
+      <div class="pillar reveal-up">
+        <h3 class="pillar-label">Presenza</h3>
+        <p>Sito e contenuti coerenti con l’esperienza che offri.</p>
+      </div>
+      <div class="pillar reveal-up">
+        <h3 class="pillar-label">Attivazione</h3>
+        <p>Campagne sul territorio e percorsi di contatto o prenotazione.</p>
+      </div>
+    </div>
+    <p class="footnote reveal-up">Obiettivi e indicatori si definiscono insieme, in base all’attività e ai canali attivati.</p>
+  </section>
+
+  <!-- ============ 09 · IL METODO ============ -->
+  <section class="scene metodo" data-theme="cream" data-chapter="Il metodo" id="metodo">
+    <div class="metodo-copy">
+      <h2 class="title split">La direzione, prima dei contenuti</h2>
+      <ol class="steps" id="steps">
+        <li class="step"><span class="step-n">01</span><span class="step-name">Ascolto</span><span class="step-desc">Conosciamo attività, pubblico e obiettivi.</span></li>
+        <li class="step"><span class="step-n">02</span><span class="step-name">Direzione</span><span class="step-desc">Definiamo posizionamento e linguaggio visivo.</span></li>
+        <li class="step"><span class="step-n">03</span><span class="step-name">Produzione</span><span class="step-desc">Realizziamo identità, materiali e contenuti.</span></li>
+        <li class="step"><span class="step-n">04</span><span class="step-name">Continuità</span><span class="step-desc">Seguiamo la comunicazione e ne leggiamo i risultati.</span></li>
+      </ol>
+    </div>
+    <figure class="media media-reveal metodo-media">
+      <img src="assets/foto/pexels-3298687.jpg" alt="Chef al wok in una cucina buia, illuminato di taglio" width="1400" height="2096" loading="lazy">
+    </figure>
+  </section>
+
+  <!-- ============ 10 · COME LAVORARE INSIEME ============ -->
+  <section class="scene progetti" data-theme="cream" data-chapter="Come possiamo lavorare insieme" id="progetti">
+    <h2 class="title split">Il progetto giusto per il tuo momento</h2>
+    <ul class="plans">
+      <li class="plan"><span class="plan-name">Nuova apertura</span><span class="plan-desc">Costruiamo l’identità e prepariamo il debutto.</span></li>
+      <li class="plan"><span class="plan-name">Riposizionamento</span><span class="plan-desc">Allineiamo l’immagine al livello della tua attività.</span></li>
+      <li class="plan"><span class="plan-name">Direzione continuativa</span><span class="plan-desc">Curiamo la comunicazione nel tempo.</span></li>
+    </ul>
+    <p class="footnote reveal-up">Ambito, tempi e investimento si definiscono su un progetto condiviso.</p>
+  </section>
+
+  <!-- ============ 11 · MANIFESTO ============ -->
+  <section class="scene locale" data-theme="cream" data-chapter="" id="locale">
+    <h2 class="display locale-title" id="localeTitle">Un’attività locale. Un’identità che resta.</h2>
+    <figure class="locale-figure">
+      <div class="media locale-media" id="localeMedia">
+        <img src="assets/foto/attivita-locale.jpg" alt="Burrata con pomodorini, olive e basilico in una ciotola di metallo" width="1512" height="1512" loading="lazy">
+      </div>
+      <figcaption id="localeCaption">Per chi cura ogni dettaglio e vuole farlo riconoscere.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 12 · PARLIAMONE ============ -->
+  <section class="scene contatto" data-theme="pink" data-chapter="Parliamone" id="parliamone">
+    <span class="pov-mark contatto-logo" id="endLogo" role="img" aria-label="POV by NAUB"></span>
+    <h2 class="title split">Il prossimo progetto può essere il tuo</h2>
+    <div class="contatto-links reveal-up">
+      <a class="big-link" href="mailto:amministrazione@naub.it?subject=POV%20by%20NAUB">amministrazione@naub.it</a>
+      <a class="big-link" href="../">naub.it</a>
+    </div>
+    <footer class="pov-footer">
+      <span>© <span id="year"></span> NAUB</span>
+      <span>Foto aggiuntive <a href="https://www.pexels.com" rel="noopener" target="_blank">Pexels</a>, video <a href="https://mixkit.co" rel="noopener" target="_blank">Mixkit</a></span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+<script src="js/pov.js"></script>
+
+</body>
+</html>
